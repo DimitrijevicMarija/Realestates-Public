@@ -1,0 +1,13 @@
+.buttonEditDelete{
+    margin-right: 32px;
+}
+
+.positionOnTheRightDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.buttonPlus{
+    margin-left: 32px;
+}

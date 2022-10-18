@@ -1,0 +1,210 @@
+
+body{
+    display: flex;
+    justify-content: center;
+}
+.greska{
+    color: red;
+}
+.centeredDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (orientation: landscape) {
+    .flexRow{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media (orientation: portrait) {
+    .flexRow{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.divRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.contactWidth{
+    width: 250px;
+}
+
+.contactWidthWider{
+    width: 300px;
+}
+
+.spaceBetween{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.oneDiv{
+    display: flex;
+    flex-direction: column;
+    /*box-shadow: 8px 8px 4px 12px rgb(184, 182, 182);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    padding: 48px;
+}
+
+.marginBetweenDivs{
+    margin-left: 48px;
+    margin-right: 48px;
+}
+
+.marginLeft{
+    margin-left: 48px;
+}
+
+.divWithBorder{
+    border: 1px solid black;
+}
+
+.positionOnTheRightDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.myHeading{
+    font-size: 30px;
+    margin: 50px;
+}
+.subtitle{
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 46px;
+}
+.myHeadingWithoutMargin{
+    font-size: 30px;
+    margin-top: 50px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.smallLetters{
+    font-size: 11px;
+    margin-top: -20px;
+}
+.heightSmallError{
+    height: 11px;
+}
+
+.buttonStyle{
+    background-color: #3f51b5;
+    /*background-color: #0d6efd;*/
+    color: #fff;
+    width: 150px;
+    height: 40px;
+}
+/* unvisited link */
+a:link {
+    color: #3f51b5;;
+}
+ 
+/* visited link */
+a:visited {
+    color: #3f51b5;;
+}
+  
+/* mouse over link */
+a:hover {
+    color: #5f73e4;;
+}
+
+/* selected link */
+a:active {
+    color: #3f51b5;;
+}
+
+.margin20px{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.margin32px{
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.heightError{
+    height: 20px;
+}
+
+
+.myMargin{
+    margin-top: 50px;
+}
+
+.myHeight{
+    height: 35px;
+}
+
+.myMarginForHeader{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.myText{
+    font-size: larger;
+}
+
+.myMarginBottom{
+    margin-bottom: 50px !important;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+@media (orientation: landscape) {
+    .example-card {
+        width: 600px;
+        margin-bottom: 24px;
+    }
+}
+@media (orientation: portrait) {
+    .example-card {
+        width: 300px;
+        margin-bottom: 24px;
+    }
+}
+
+
+.centerHorizontally{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/**.formPadding{
+    padding-top: 120px;
+}
+
+.belowMenuPadding{
+    padding-top: 120px;
+}**/
+
+.my-snackbar {
+    background: #3f51b5;
+    color: white;
+}
+.my-snackbar button {
+    background-color: #3f51b5;
+    color: rgb(214, 209, 209);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

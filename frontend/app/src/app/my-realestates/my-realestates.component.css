@@ -1,0 +1,10 @@
+.soldText{
+    font-size: 20px;
+    color: greenyellow;
+}
+
+@media (orientation: landscape) {
+    img{
+        width: 240px;    
+    }
+}

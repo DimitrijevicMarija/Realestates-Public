@@ -1,0 +1,12 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+
+.naslov{
+    font-size: xx-large !important;
+}
+
+.svetloSiva{
+    background-color: rgb(227, 227, 228);
+}

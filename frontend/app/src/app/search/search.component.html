@@ -1,0 +1,98 @@
+<form [formGroup]="searchForm" class="centeredDiv formPadding">
+  <span class="myHeading">Unesite parametre pretrage</span>
+   
+
+  <mat-form-field appearance="outline"  [style.width.px]=320>
+    <mat-label>Tip nekretnine</mat-label>
+    <mat-select formControlName='tip' required>
+      <mat-option *ngFor='let t of tipovi' value="{{t.naziv}}">{{t.naziv}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="searchForm.controls['tip'].invalid">
+        Tip nekretnine je obavezan parametar
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" [style.width.px]=320>
+    <mat-label>Lokacija</mat-label>
+    <input matInput formControlName='lokacija' placeholder="Grad / Opstina1, Opstina2 / Mikrolokacija">
+    
+    
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" [style.width.px]=320>
+    <mat-label>Cena do</mat-label>
+    <input matInput formControlName='cena' >
+    <span matSuffix>&euro;</span>
+    <mat-error *ngIf="searchForm.controls['cena'].invalid">
+        Cena nije u dobrom formatu
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline" [style.width.px]=320>
+    <mat-label>Kvadratura od</mat-label>
+    <input matInput formControlName='kvadratura' >
+    <span matSuffix>m2</span>
+    <mat-error *ngIf="searchForm.controls['kvadratura'].invalid">
+        Kvadratura nije u dobrom formatu
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" [style.width.px]=320>
+    <mat-label>Minimalan broj soba</mat-label>
+    <mat-select formControlName='brojSoba'>
+        <mat-option  value=1>1</mat-option>
+        <mat-option  value=1.5>1.5</mat-option>
+        <mat-option  value=2>2</mat-option>
+        <mat-option  value=2.5>2.5</mat-option>
+        <mat-option  value=3>3</mat-option>
+        <mat-option  value=3.5>3.5</mat-option>
+        <mat-option  value=4>4</mat-option>
+        <mat-option  value=4.5>4.5</mat-option>
+        <mat-option  value=5>5</mat-option>
+        <mat-option  value=6>5+</mat-option>
+      </mat-select>
+    
+  </mat-form-field>
+
+  <button mat-raised-button (click)="trazi()" class="buttonStyle margin20px">Trazi</button>
+</form>
+
+<div class="divWithTopAndBottomMargins centeredDiv" >
+    <div *ngIf='nemaRezultata'>
+      Nema rezultata za Vasu pretragu. 
+    </div>
+    <div *ngFor='let n of nekretnine' > 
+      <mat-card class="example-card" >
+          <mat-card-title-group>
+            <mat-card-title>{{n.naziv}}</mat-card-title>
+            <mat-card-subtitle>
+              <span > {{n.grad}} - {{n.opstina}} - {{n.mikrolokacija}}</span>          
+            </mat-card-subtitle>
+            <img mat-card-lg-image [src]=n.naslovnaUrl alt="Nema slike" >
+          </mat-card-title-group>
+          <mat-card-content>
+              Kvadratura: <b>{{n.kvadratura}} m2</b> &nbsp; &nbsp;
+              Broj soba: <b>{{brojSoba(n.brojSoba)}}</b> <br>
+              Spratnost: <b>{{n.ukupnaSpratnost}} </b> &nbsp; &nbsp;
+              Cena: <b>{{n.cena}} &euro;</b> <br>
+              Prosecna cena na mikrolokaciji: <b>{{n.prosecnaCena}} &euro;/m2</b> <br>
+              Kratak opis: <b>{{n.opis.substring(0, 300)}}...</b>           
+          </mat-card-content>
+          <mat-card-actions >
+              <button mat-button (click)='detaljnije(n)'>DETALJNIJE</button>
+          </mat-card-actions>
+      </mat-card>
+      
+    </div>
+</div>
+
+    
+<mat-paginator #paginator *ngIf='nekretnine.length > 0' 
+              (page)="handlePageEvent($event)"
+              [length]="ukupanBrojNekretnina"
+              [pageSize]="brojPoStranici"
+              [pageIndex] = "trenutnaStranica"
+              aria-label="Select page"
+              >
+</mat-paginator>

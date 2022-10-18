@@ -1,0 +1,50 @@
+<form [formGroup]="addMicrolocationForm" class="centeredDiv formPadding">
+    <span class="myHeading">Dodaj mikrolokaciju</span>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Naziv</mat-label>
+        <input matInput formControlName='naziv' required >
+        <mat-error *ngIf="addMicrolocationForm.controls['naziv'].invalid">
+            <div *ngIf="addMicrolocationForm.controls['naziv'].errors['required']">
+                Naziv je obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Grad</mat-label>
+        <mat-select formControlName='grad' required (selectionChange)='promenjenGrad($event)'>
+            <mat-option *ngFor='let g of gradovi' value="{{g.naziv}}">{{g.naziv}}</mat-option>
+          </mat-select>
+        <mat-error *ngIf="addMicrolocationForm.controls['grad'].invalid">
+            <div *ngIf="addMicrolocationForm.controls['grad'].errors['required']">
+                Grad je obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Opstina</mat-label>
+        <mat-select formControlName='opstina' required >
+            <mat-option *ngFor='let o of opstine' value="{{o.naziv}}">{{o.naziv}}</mat-option>
+          </mat-select>
+        <mat-error *ngIf="addMicrolocationForm.controls['opstina'].invalid">
+            <div *ngIf="addMicrolocationForm.controls['opstina'].errors['required']">
+                Opstina je obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [style.width.px]=320 >
+        <mat-label>Ulice</mat-label>
+        <textarea matInput formControlName='ulice' required placeholder="Ulica 1, Ulica 2"></textarea>
+        <mat-error *ngIf="addMicrolocationForm.controls['ulice'].invalid">
+            <div *ngIf="addMicrolocationForm.controls['ulice'].errors['required']">
+                Ulice su obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button (click)="dodajMikrolokaciju()" class="buttonStyle margin20px">Dodaj mikrolokaciju</button>
+
+</form>
+

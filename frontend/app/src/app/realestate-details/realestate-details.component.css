@@ -1,0 +1,38 @@
+
+.info{
+    padding: 24px;
+    font-size: 15px;
+    /**border:1px solid black;
+    border-radius: 4px;**/
+    word-spacing: 6px;
+    
+}
+
+
+.priceGreen{
+    font-size: 30px;
+    font-weight: bold;
+    color: greenyellow;
+}
+
+.priceRed{
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+}
+
+@media (orientation: portrait) {
+    .topMarginPortrait{
+        margin-top: 24px !important;
+    }
+  }
+
+.descriptionMargins{
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+
+
+
+

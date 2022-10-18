@@ -1,0 +1,83 @@
+<div class="centeredDiv ">
+    <span class="myHeading" *ngIf='brojNeodobrenihKorisnika > 0'>Odobrite korisnike</span>
+
+    <div *ngFor='let k of korisnici' > 
+        <mat-card class="example-card" *ngIf='k.odobren=="?"'>
+            <mat-card-title-group>
+              <mat-card-title>{{k.ime}} {{k.prezime}}</mat-card-title>
+              <mat-card-subtitle>
+                  <span *ngIf='k.tip=="K"'>Kupac</span>
+                  <span *ngIf='k.tip=="S"'>Samostalni prodavac</span>
+                  <span *ngIf='k.tip=="A"'>Agent iz agencije {{k.agencija}}</span>
+              </mat-card-subtitle>
+              <img mat-card-sm-image [src]=k.urlProfilna alt="Nema slike" >
+            </mat-card-title-group>
+            <mat-card-content>
+                Korisnicko ime: <b>{{k.korisnickoIme}}</b> <br>
+                Broj telefona: <b>{{k.telefon}}</b> &nbsp; &nbsp;  I-mejl adresa: <b>{{k.imejl}}</b><br>
+                Datum rodjenja: <b>{{k.datumRodjenja}}</b> &nbsp; &nbsp;  Grad: <b>{{k.grad}}</b><br>
+               
+            </mat-card-content>
+            <mat-card-actions class="positionOnTheRightDiv">
+                <button mat-fab aria-label="Odobri korisnika"
+                (click)='potvrdiKorisnika(k)' class="buttonAccept"
+                matTooltip="Odobri korisnika">
+                    <mat-icon>check</mat-icon>
+                </button>
+                <button mat-fab aria-label="Odbij korisnika"
+                (click)='odbijKorisnika(k)' class="buttonReject"
+                matTooltip="Odbij korisnika">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+        
+    </div>
+
+
+    <span class="myHeading">Odobreni korisnici</span>
+
+    <div *ngFor='let k of korisnici' > 
+        <mat-card class="example-card" *ngIf='k.odobren=="DA"'>
+            <mat-card-title-group>
+              <mat-card-title>{{k.ime}} {{k.prezime}}</mat-card-title>
+              <mat-card-subtitle>
+                  <span *ngIf='k.tip=="K"'>Kupac</span>
+                  <span *ngIf='k.tip=="S"'>Samostalni prodavac</span>
+                  <span *ngIf='k.tip=="A"'>Agent iz agencije {{k.agencija}}</span>
+              </mat-card-subtitle>
+              <img mat-card-sm-image [src]=k.urlProfilna alt="Nema slike" >
+            </mat-card-title-group>
+            <mat-card-content>
+                Korisnicko ime: <b>{{k.korisnickoIme}}</b> <br>
+                Broj telefona: <b>{{k.telefon}}</b> &nbsp; &nbsp;  I-mejl adresa: <b>{{k.imejl}}</b><br>
+                Datum rodjenja: <b>{{k.datumRodjenja}}</b> &nbsp; &nbsp;  Grad: <b>{{k.grad}}</b><br>
+               
+            </mat-card-content>
+            <mat-card-actions class="positionOnTheRightDiv">
+                <button mat-fab aria-label="Obrisi korisnika" color="#0d6efd"
+                (click)='obrisiKorisnika(k)' class="buttonEditDelete"
+                matTooltip="Obrisi korisnika">
+                    <mat-icon>delete</mat-icon>
+                </button> 
+                <button mat-fab aria-label="Obrisi korisnika" color="#0d6efd" 
+                (click)='izmeniKorisnika(k)' class="buttonEditDelete"
+                matTooltip="Izmeni korisnika">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+        
+    </div>
+</div>
+
+    
+
+   
+
+
+
+
+
+
+

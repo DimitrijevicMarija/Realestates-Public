@@ -1,0 +1,279 @@
+
+<form [formGroup]="addRealestateForm" class="centeredDiv formPadding">
+    <span class="myHeading">Dodaj nekretninu</span>
+    <div class="flexRow">
+        <div class="oneDiv marginBetweenDivs">
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Naziv</mat-label>
+                <input matInput formControlName='naziv' required >
+                <mat-error *ngIf="addRealestateForm.controls['naziv'].invalid">
+                    <div *ngIf="addRealestateForm.controls['naziv'].errors['required']">
+                        Naziv je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline"  [style.width.px]=320>
+                <mat-label>Tip nekretnine</mat-label>
+                <mat-select formControlName='tip' required>
+                  <mat-option *ngFor='let t of tipovi' value="{{t.naziv}}">{{t.naziv}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['tip'].invalid">
+                    Tip nekretnine je obavezno polje
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline" [style.width.px]=320 >
+                <mat-label>Opis</mat-label>
+                <textarea matInput formControlName='opis' required ></textarea>
+                <mat-error *ngIf="addRealestateForm.controls['opis'].invalid">
+                    <div *ngIf="addRealestateForm.controls['opis'].errors['required']">
+                        Opis je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="oneDiv marginBetweenDivs">
+            <div class="spaceBetween">
+                <mat-form-field appearance="outline" [style.width.px]=155>
+                    <mat-label>Kvadratura</mat-label>
+                    <input matInput formControlName='kvadratura' required >
+                    <span matSuffix>m2</span>
+                    <mat-error *ngIf="addRealestateForm.controls['kvadratura'].invalid">
+                        <div *ngIf="addRealestateForm.controls['kvadratura'].errors['required']">
+                            Obavezno polje
+                        </div>
+                        <div *ngIf="addRealestateForm.controls['kvadratura'].errors['pattern']">
+                            Los format
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline" [style.width.px]=155>
+                    <mat-label>Godina izgradnje</mat-label>
+                    <input matInput formControlName='godinaIzgradnje' required placeholder="2018">
+                    <mat-error *ngIf="addRealestateForm.controls['godinaIzgradnje'].invalid">
+                        <div *ngIf="addRealestateForm.controls['godinaIzgradnje'].errors['required']">
+                            Obavezno polje
+                        </div>
+                        <div *ngIf="addRealestateForm.controls['godinaIzgradnje'].errors['pattern']">
+                            Los format
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+        
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Broj soba</mat-label>
+                <mat-select formControlName='brojSoba' required>
+                    <mat-option  value=1>1</mat-option>
+                    <mat-option  value=1.5>1.5</mat-option>
+                    <mat-option  value=2>2</mat-option>
+                    <mat-option  value=2.5>2.5</mat-option>
+                    <mat-option  value=3>3</mat-option>
+                    <mat-option  value=3.5>3.5</mat-option>
+                    <mat-option  value=4>4</mat-option>
+                    <mat-option  value=4.5>4.5</mat-option>
+                    <mat-option  value=5>5</mat-option>
+                    <mat-option  value=6>5+</mat-option>
+                  </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['brojSoba'].invalid">
+                    <div *ngIf="addRealestateForm.controls['brojSoba'].errors['required']">
+                        Broj soba je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="spaceBetween">
+                <mat-form-field appearance="outline" [style.width.px]=155>
+                    <mat-label>Sprat</mat-label>
+                    <input matInput formControlName='sprat' required placeholder="12">
+                    <mat-error *ngIf="addRealestateForm.controls['sprat'].invalid">
+                        <div *ngIf="addRealestateForm.controls['sprat'].errors['required']">
+                            Obavezno polje
+                        </div>
+                        <div *ngIf="addRealestateForm.controls['sprat'].errors['pattern']">
+                            Los format
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" [style.width.px]=155>
+                    <mat-label>Ukupna spratnost</mat-label>
+                    <input matInput formControlName='ukupnaSpratnost' required placeholder="18">
+                    <mat-error *ngIf="addRealestateForm.controls['ukupnaSpratnost'].invalid">
+                        <div *ngIf="addRealestateForm.controls['ukupnaSpratnost'].errors['required']">
+                            Obavezno polje
+                        </div>
+                        <div *ngIf="addRealestateForm.controls['ukupnaSpratnost'].errors['pattern']">
+                            Los format
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    
+    </div>
+    <div class="flexRow">
+        <div class="oneDiv marginBetweenDivs">
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Grad</mat-label>
+                <mat-select formControlName='grad' required (selectionChange)='promenjenGrad($event)'>
+                    <mat-option *ngFor='let g of gradovi' value="{{g.naziv}}">{{g.naziv}}</mat-option>
+                  </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['grad'].invalid">
+                    <div *ngIf="addRealestateForm.controls['grad'].errors['required']">
+                        Grad je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Opstina</mat-label>
+                <mat-select formControlName='opstina' required (selectionChange)='promenjenaOpstina($event)'>
+                    <mat-option *ngFor='let o of opstine' value="{{o.naziv}}">{{o.naziv}}</mat-option>
+                  </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['opstina'].invalid">
+                    <div *ngIf="addRealestateForm.controls['opstina'].errors['required']">
+                        Opstina je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Mikrolokacija</mat-label>
+                <mat-select formControlName='mikrolokacija' required (selectionChange)='promenjenaMikrolokacija($event)'>
+                    <mat-option *ngFor='let m of mikrolokacije' value="{{m.naziv}}">{{m.naziv}}</mat-option>
+                  </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['mikrolokacija'].invalid">
+                    <div *ngIf="addRealestateForm.controls['mikrolokacija'].errors['required']">
+                        Mikrolokacija je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Ulica</mat-label>
+                <mat-select formControlName='ulica' required>
+                    <mat-option *ngFor='let u of ulice' value="{{u}}">{{u}}</mat-option>
+                  </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['ulica'].invalid">
+                    <div *ngIf="addRealestateForm.controls['ulica'].errors['required']">
+                        Ulica je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+            
+            
+        </div>
+        <div class="oneDiv marginBetweenDivs">
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Stanje nekretnine</mat-label>
+                <mat-select formControlName='stanje' required>
+                    <mat-option  value="Izvorno">Izvorno</mat-option>
+                    <mat-option  value="Renovirano">Renovirano</mat-option>
+                    <mat-option  value="LUX">LUX</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['stanje'].invalid">
+                    <div *ngIf="addRealestateForm.controls['stanje'].errors['required']">
+                        Stanje je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Tip grejanja</mat-label>
+                <mat-select formControlName='grejanje' required>
+                    <mat-option  value="Centralno grejanje">Centralno grejanje</mat-option>
+                    <mat-option  value="Etazno grejanje">Etazno grejanje</mat-option>
+                    <mat-option  value="TA pec">TA pec</mat-option>
+                    <mat-option  value="Gas">Gas</mat-option>
+                    <mat-option  value="Podno">Podno grejanje</mat-option>
+                    <mat-option  value="Toplotne pumpe">Toplotne pumpe</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addRealestateForm.controls['grejanje'].invalid">
+                    <div *ngIf="addRealestateForm.controls['grejanje'].errors['required']">
+                        Grejanje je obavezno polje
+                    </div>
+                </mat-error>
+            </mat-form-field>
+            <div class="spaceBetween">
+                <mat-form-field appearance="outline" [style.width.px]=155>
+                    <mat-label>Cena</mat-label>
+                    <input matInput formControlName='cena' required >
+                    <span matSuffix>&euro;</span>
+                    <mat-error *ngIf="addRealestateForm.controls['cena'].invalid">
+                        <div *ngIf="addRealestateForm.controls['cena'].errors['required']">
+                           Obavezno polje
+                        </div>
+                        <div *ngIf="addRealestateForm.controls['cena'].errors['pattern']">
+                            Los format
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" [style.width.px]=155>
+                    <mat-label>Mesecne rezije</mat-label>
+                    <input matInput formControlName='rezije' required >
+                    <span matSuffix>RSD</span>
+                    <mat-error *ngIf="addRealestateForm.controls['rezije'].invalid">
+                        <div *ngIf="addRealestateForm.controls['rezije'].errors['required']">
+                            Obavezno polje
+                        </div>
+                        <div *ngIf="addRealestateForm.controls['rezije'].errors['pattern']">
+                            Los format
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Linije</mat-label>
+                <mat-select formControlName='linije' multiple>
+                    <mat-option *ngFor='let l of linije' value="{{l}}">{{l}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+           
+           
+            
+        </div>
+    </div>
+    <div class="flexRow">
+        <div class="oneDiv">
+            <mat-checkbox formControlName='terasa' color="primary">Terasa</mat-checkbox>
+            <mat-checkbox formControlName='lodja' color="primary">Lodja</mat-checkbox>
+            <mat-checkbox formControlName='francBalkon' color="primary">Francuski balkon</mat-checkbox>
+            <mat-checkbox formControlName='basta' color="primary">Basta</mat-checkbox>
+        </div>
+        <div class="oneDiv">
+            <mat-checkbox formControlName='parking' color="primary">Parking</mat-checkbox>
+            <mat-checkbox formControlName='garaza' color="primary">Garaza</mat-checkbox>
+            <mat-checkbox formControlName='podrum' color="primary">Podrum</mat-checkbox>
+            <mat-checkbox formControlName='lift' color="primary">Lift</mat-checkbox>
+        </div>
+        <div class="oneDiv">
+            <mat-checkbox formControlName='klima' color="primary">Klima</mat-checkbox>
+            <mat-checkbox formControlName='interfon' color="primary">Interfon</mat-checkbox>
+            <mat-checkbox formControlName='internet' color="primary">Internet</mat-checkbox>
+            <mat-checkbox formControlName='telefon' color="primary">Telefon</mat-checkbox>
+        </div>
+    </div>
+    <div class="flexRow">
+        <div class="oneDiv">
+            <mat-form-field appearance="outline" [style.width.px]=320>
+                <mat-label>Slika nekretnine</mat-label>
+                <ngx-mat-file-input formControlName="slika" (input)="fileChosen($event)" ></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+            <span class="greska heightSmallError smallLetters">{{slikaGreska}}</span>
+        </div>
+    </div>
+    <div class="flexRow">
+        <img *ngFor='let s of slikeUrl' [src]=s alt="Nema slike"
+        class="imagesOfRealestate">
+    </div>
+
+   
+    <span class="greska heightError">{{greska}}</span>
+    <button mat-raised-button (click)="dodajNekretninu()" class="buttonStyle margin20px">Dodaj nekretninu</button>
+
+</form>
+

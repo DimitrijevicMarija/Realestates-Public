@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" class="centeredDiv formPadding" *ngIf='ulogovanKorisnik == null'>
+    <span class="myHeading">Ulogujte se</span>
+     
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Korisnicko ime</mat-label>
+        <input matInput formControlName='korisnickoIme' required >
+        <mat-error *ngIf="loginForm.controls['korisnickoIme'].invalid">Korisnicko ime je obavezno polje</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Lozinka</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" required formControlName='lozinka'>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Sakrij lozinku'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.controls['lozinka'].invalid">Lozinka je obavezno polje</mat-error>
+    </mat-form-field>
+    <span class="greska heightError">{{greska}}</span>
+    <button mat-raised-button (click)="ulogujSe()" class="buttonStyle margin20px">Uloguj se</button>
+
+   
+    <span class="margin20px"> Nemate nalog? <a routerLink="register">Registrujte se ovde.</a></span>
+</form>
+
+<app-homepage></app-homepage>

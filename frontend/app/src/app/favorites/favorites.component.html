@@ -1,0 +1,36 @@
+<div class="centeredDiv belowMenuPadding">
+    <span class="myHeading">Moje omiljene</span>
+</div>
+
+
+<div class="divWithTopAndBottomMargins centeredDiv" >
+    <div *ngFor='let n of nekretnine' > 
+      <mat-card class="example-card" >
+          <mat-card-title-group>
+            <mat-card-title>
+                {{n.naziv}}
+                <mat-icon>favorite</mat-icon>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <span > {{n.grad}} - {{n.opstina}} - {{n.mikrolokacija}}</span>          
+            </mat-card-subtitle>
+            <img mat-card-lg-image [src]=n.naslovnaUrl alt="Nema slike" >
+          </mat-card-title-group>
+          <mat-card-content>
+              Kvadratura: <b>{{n.kvadratura}} m2</b> &nbsp; &nbsp;
+              Broj soba: <b>{{brojSoba(n.brojSoba)}}</b> <br>
+              Spratnost: <b>{{n.ukupnaSpratnost}} </b> &nbsp; &nbsp;
+              Cena: <b>{{n.cena}} &euro;</b> <br>
+              Prosecna cena na mikrolokaciji: <b>{{n.prosecnaCena}} &euro;/m2</b> <br>
+              Kratak opis: <b>{{n.opis.substring(0, 300)}}...</b>           
+          </mat-card-content>
+          <mat-card-actions >
+              <button mat-button (click)='detaljnije(n)'>DETALJNIJE</button>
+              <button mat-button (click)='ukloniIzOmiljenih(n._id)'>UKLONI</button>
+          </mat-card-actions>
+      </mat-card>
+      
+    </div>
+</div>
+
+

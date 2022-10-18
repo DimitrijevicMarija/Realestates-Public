@@ -1,0 +1,12 @@
+.jsonValid{
+    color: greenyellow;
+    font-weight: bold;
+}
+.jsonInvalid{
+    color: red;
+    font-weight: bold;
+}
+.imagesOfRealestate{
+    height: 100px;
+    margin-left: 24px;
+}

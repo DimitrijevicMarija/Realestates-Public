@@ -1,0 +1,32 @@
+<div class="centeredDiv ">
+    <span class="myHeading centerHorizontally">
+        
+        Mikrolokacije
+        <button mat-icon-button class="example-icon favorite-icon buttonPlus" aria-label="Dodaj mikrolokaciju" (click)='dodajMikrolokaciju()'
+        matTooltip="Dodaj mikrolokaciju">
+            <mat-icon>add_circle_outline</mat-icon>
+        </button>
+    </span>
+
+    <div *ngFor='let m of mikrolokacije' > 
+        <mat-card class="example-card" >
+            <mat-card-title-group class="centerHorizontally">
+              <mat-card-title>{{m.naziv}}</mat-card-title>
+
+              <button mat-icon-button class="example-icon favorite-icon buttonPlus" aria-label="Obrisi mikrolokaciju" (click)='obrisiMikrolokaciju(m._id)'
+              *ngIf='!m.postojiNekretnina'  matTooltip="Obrisi mikrolokaciju">
+                <mat-icon>delete</mat-icon>
+             </button>
+
+            </mat-card-title-group>
+            <mat-card-content>
+                    Opstina: <b>{{m.opstina}}</b> <br>
+                    Grad: <b>{{m.grad}}</b> <br> 
+                    Ulice: <b>{{m.ulice.join(", ")}}</b> <br>        
+            </mat-card-content>
+           
+        </mat-card>
+        
+    </div>
+
+</div>

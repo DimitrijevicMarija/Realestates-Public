@@ -1,0 +1,36 @@
+<div class="centeredDiv belowMenuPadding">
+    <div class="myHeading" > 
+        Moje nekretnine
+    </div>
+
+
+    <div class="divWithTopAndBottomMargins centeredDiv">
+        <div *ngFor='let n of nekretnine' > 
+          <mat-card class="example-card" >
+              <mat-card-title-group>
+                <mat-card-title>{{n.naziv}}</mat-card-title>
+                <img mat-card-lg-image [src]=n.naslovnaUrl alt="Nema slike" >
+              </mat-card-title-group>
+              <mat-card-content>
+                  Cena: <b>{{n.cena}} &euro;</b> <br>
+              </mat-card-content>
+              <mat-card-actions >
+                  <button mat-button (click)='izmeni(n)'>IZMENI&nbsp;&nbsp;
+                      <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-button (click)='prodato(n)' *ngIf='n.prodato==0'>
+                      PRODATO&nbsp;&nbsp;
+                      <mat-icon>check_circle_outline</mat-icon>
+                  </button>
+                  <span *ngIf='n.prodato > 0' class="soldText">
+                     PRODATO
+                  </span>
+              </mat-card-actions>
+          </mat-card>
+          
+        </div>
+    </div>
+
+</div>
+
+

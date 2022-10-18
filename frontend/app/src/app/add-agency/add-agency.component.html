@@ -1,0 +1,68 @@
+<form [formGroup]="addAgencyForm" class="centeredDiv formPadding">
+    <span class="myHeading">Dodaj agenciju</span>
+     
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Ime</mat-label>
+        <input matInput formControlName='ime' required >
+        <mat-error *ngIf="addAgencyForm.controls['ime'].invalid">
+            <div *ngIf="addAgencyForm.controls['ime'].errors['required']">
+                Ime je obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>PIB</mat-label>
+        <input matInput formControlName='pib' required >
+        <mat-error *ngIf="addAgencyForm.controls['pib'].invalid">
+            <div *ngIf="addAgencyForm.controls['pib'].errors['required']">
+                PIB je obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Grad</mat-label>
+        <input matInput formControlName='grad' required >
+        <mat-error *ngIf="addAgencyForm.controls['grad'].invalid">
+            <div *ngIf="addAgencyForm.controls['grad'].errors['required']">
+                Grad je obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Adresa</mat-label>
+        <input matInput formControlName='adresa' required >
+        <mat-error *ngIf="addAgencyForm.controls['adresa'].invalid">
+            <div *ngIf="addAgencyForm.controls['adresa'].errors['required']">
+                Adresa je obavezno polje
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Kontakt telefon</mat-label>
+        <input matInput formControlName='telefon' required placeholder="+3816XXXXXXXX">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="addAgencyForm.controls['telefon'].invalid">
+            <div *ngIf="addAgencyForm.controls['telefon'].errors['required']">
+                Telefon je obavezno polje
+            </div>
+            <div *ngIf="addAgencyForm.controls['telefon'].errors['pattern']">
+                Telefon treba uneti u formatu +3816XXXXXXXX
+            </div>
+        </mat-error>
+    </mat-form-field>
+
+    
+    <span class="greska heightError">{{greska}}</span>
+    <button mat-raised-button (click)="dodajAgenciju()" class="buttonStyle margin20px">Dodaj agenciju</button>
+</form>
+
+
+
+
+

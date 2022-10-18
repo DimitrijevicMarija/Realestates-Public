@@ -1,0 +1,173 @@
+<form [formGroup]="registerForm" class="centeredDiv formPadding">
+    <span class="myHeading" *ngIf='!adminUlogovan'>Registrujte se</span>
+    <span class="myHeading" *ngIf='adminUlogovan'>Registruj korisnika</span>
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Ime</mat-label>
+        <input matInput formControlName='ime' required >
+        <mat-error *ngIf="registerForm.controls['ime'].invalid">
+            <div *ngIf="registerForm.controls['ime'].errors['required']">
+                Ime je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['ime'].errors['pattern']">
+                Ime nije u dobrom formatu
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Prezime</mat-label>
+        <input matInput formControlName='prezime' required >
+        <mat-error *ngIf="registerForm.controls['prezime'].invalid">
+            <div *ngIf="registerForm.controls['prezime'].errors['required']">
+                Prezime je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['prezime'].errors['pattern']">
+                Prezime nije u dobrom formatu
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Korisnicko ime</mat-label>
+        <input matInput formControlName='korisnickoIme' required >
+        <mat-error *ngIf="registerForm.controls['korisnickoIme'].invalid">
+            <div *ngIf="registerForm.controls['korisnickoIme'].errors['required']">
+                Korisnicko ime je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['korisnickoIme'].errors['pattern']">
+                Korisnicko ime nije u dobrom formatu
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Lozinka</mat-label>
+        <input matInput [type]="hide1 ? 'password' : 'text'" required formControlName='lozinka'>
+        <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Sakrij lozinku'" [attr.aria-pressed]="hide1">
+        <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.controls['lozinka'].invalid">
+            <div *ngIf="registerForm.controls['lozinka'].errors['required']">
+                Lozinka je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['lozinka'].errors['pattern']">
+                Lozinka mora sadrzati minimum 8 karaktera, 1 veliko slovo, 1 cifru, 1 specijalni karakter i pocinjati slovom
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Ponovljena lozinka</mat-label>
+        <input matInput [type]="hide2 ? 'password' : 'text'" required formControlName='ponovljenaLozinka'>
+        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Sakrij lozinku'" [attr.aria-pressed]="hide2">
+        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.controls['ponovljenaLozinka'].invalid">
+            <div *ngIf="registerForm.controls['ponovljenaLozinka'].errors['passwordMismatch']">
+                Lozinke se ne poklapaju
+            </div>           
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Grad</mat-label>
+        <input matInput formControlName='grad' required >
+        <mat-error *ngIf="registerForm.controls['grad'].invalid">
+            <div *ngIf="registerForm.controls['grad'].errors['required']">
+                Grad je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['grad'].errors['pattern']">
+                Grad nije u dobrom formatu
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Datum rodjenja</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName='datumRodjenja' required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="registerForm.controls['datumRodjenja'].invalid">
+            <div *ngIf="registerForm.controls['datumRodjenja'].errors['required']">
+                Datum rodjenja je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['datumRodjenja'].errors['under18']">
+                Morate biti punoletni
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Kontakt telefon</mat-label>
+        <input matInput formControlName='telefon' required placeholder="+3816XXXXXXXX">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="registerForm.controls['telefon'].invalid">
+            <div *ngIf="registerForm.controls['telefon'].errors['required']">
+                Telefon je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['telefon'].errors['pattern']">
+                Telefon treba uneti u formatu +3816XXXXXXXX
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>I-mejl adresa</mat-label>
+        <input matInput formControlName='imejl' required placeholder="marija@gmail.com">
+        <mat-error *ngIf="registerForm.controls['imejl'].invalid">
+            <div *ngIf="registerForm.controls['imejl'].errors['required']">
+                I-mejl adresa je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['imejl'].errors['email']">
+                Pogresan format
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline"  [style.width.px]=320>
+        <mat-label>Tip korisnika</mat-label>
+        <mat-select formControlName='tip' required>
+          <mat-option value="K">Kupac</mat-option>
+          <mat-option value="S">Samostalni prodavac</mat-option>
+          <mat-option value="A">Agent agencije</mat-option>
+        </mat-select>
+        <mat-error *ngIf="registerForm.controls['tip'].invalid">
+            Tip korisnika je obavezno polje
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline"  [style.width.px]=320 *ngIf='registerForm.controls["tip"].value=="A"'>
+        <mat-label>Agencija</mat-label>
+        <mat-select formControlName='agencija' required>
+          <mat-option *ngFor='let a of agencije' value="{{a.pib}}">{{a.ime}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="registerForm.controls['agencija'].invalid">
+            Agencija je obavezno polje
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320 *ngIf='registerForm.controls["tip"].value=="A"'>
+        <mat-label>Broj licence</mat-label>
+        <input matInput formControlName='brojLicence' required >
+        <mat-error *ngIf="registerForm.controls['brojLicence'].invalid">
+            <div *ngIf="registerForm.controls['brojLicence'].errors['required']">
+                Broj licence je obavezno polje
+            </div>
+            <div *ngIf="registerForm.controls['brojLicence'].errors['pattern']">
+                Broj licence nije u dobrom formatu
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Profilna slika</mat-label>
+        <ngx-mat-file-input formControlName="profilna" (input)="fileChosen($event)" ></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+        <mat-error *ngIf="registerForm.controls['profilna'].invalid">
+            Profilna slika je obavezno polje
+        </mat-error>
+    </mat-form-field>
+    <span class="greska heightSmallError smallLetters">{{slikaGreska}}</span>
+    
+    <ngx-captcha  [config]="captchaConfig" class="margin20px" *ngIf='!adminUlogovan'></ngx-captcha>
+    <span class="greska heightError">{{robotGreska}}</span>
+    
+   
+    <span class="greska heightError">{{greska}}</span>
+    <button mat-raised-button (click)="registrujSe()" class="buttonStyle margin20px" *ngIf='!adminUlogovan'>Registruj se</button>
+    <button mat-raised-button (click)="registrujSe()" class="buttonStyle margin20px" *ngIf='adminUlogovan'>Registruj</button>
+
+
+    <span class="margin20px" *ngIf='!adminUlogovan'> Imate nalog? <a routerLink="">Ulogujte se ovde.</a></span>
+    
+</form>
+

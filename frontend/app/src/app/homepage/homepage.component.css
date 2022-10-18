@@ -1,0 +1,10 @@
+@media (orientation: landscape) {
+    img{
+        width: 240px;    
+    }
+}
+
+.divWithTopAndBottomMargins{
+    margin-top: 100px;
+    margin-bottom: 64px;
+}

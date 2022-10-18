@@ -1,0 +1,57 @@
+
+<div class="centeredDiv belowMenuPadding">
+    <span class="myHeading">Dodaj nekretninu iz JSON fajla</span>
+
+
+ 
+<mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+    <mat-step [stepControl]="firstFormGroup" label="Odaberi JSON fajl">
+        <form [formGroup]="firstFormGroup">
+            <mat-form-field appearance="outline">
+                <mat-label>JSON fajl</mat-label>
+                <ngx-mat-file-input formControlName="firstCtrl" required (input)="fileChosen($event)" ></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+           
+            <div>
+                <button mat-button matStepperNext *ngIf='jsonChosen' (click)='checkJSON()'>Sledece</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Validan JSON fajl?">
+        <form [formGroup]="secondFormGroup">
+            <p *ngIf='validJson' class="jsonValid">JSON fajl je validan.</p>
+            <p *ngIf='validJson == false' class="jsonInvalid">JSON fajl nije validan.</p>
+            <div>
+                <button mat-button matStepperPrevious *ngIf='validJson == false'>Nazad</button>
+                <button mat-button matStepperNext  *ngIf='validJson'>Sledece</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Unesi fotografije">
+        <form [formGroup]="thirdFormGroup">
+            <mat-form-field appearance="outline">
+                <mat-label>Odaberi fotografije</mat-label>
+                <ngx-mat-file-input formControlName="thirdCtrl" required (input)="imageChosen($event)" ></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+            <div>
+                <p *ngIf="slikaGreska!=''">{{slikaGreska}}</p>
+                <button mat-button matStepperNext *ngIf='numberOfImages >=3' (click)='dodajNekretninu()'>Dodaj nekretninu</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Gotovo</ng-template>
+        <p  class="jsonValid"> Uspesno ste dodali nekretninu!</p>
+    </mat-step>
+</mat-stepper>
+
+<div class="flexRow">
+    <img *ngFor='let s of slikeUrl' [src]=s alt="Nema slike"
+    class="imagesOfRealestate">
+</div>
+
+
+</div>
+

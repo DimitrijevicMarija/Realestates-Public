@@ -1,0 +1,22 @@
+<div class="divWithTopAndBottomMargins centeredDiv">
+    <div *ngFor='let n of nekretnine' > 
+      <mat-card class="example-card" >
+          <mat-card-title-group>
+            <mat-card-title>{{n.naziv}}</mat-card-title>
+            <mat-card-subtitle>
+              <span >{{n.tip}}</span>          
+            </mat-card-subtitle>
+            <img mat-card-lg-image [src]=n.naslovnaUrl alt="Nema slike" >
+          </mat-card-title-group>
+          <mat-card-content>
+              Cena: <b>{{n.cena}} &euro;</b> <br>
+              Linije: <b>{{n.linije}}</b>           
+          </mat-card-content>
+          <mat-card-actions >
+              <button mat-button (click)='detaljnije(n)'>DETALJNIJE</button>
+          </mat-card-actions>
+      </mat-card>
+      
+    </div>
+</div>
+

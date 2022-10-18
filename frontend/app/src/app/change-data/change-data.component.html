@@ -1,0 +1,43 @@
+<form [formGroup]="changeForm" class="centeredDiv formPadding">
+    <span class="myHeading">Izmeni podatke</span>
+
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>Kontakt telefon</mat-label>
+        <input matInput formControlName='telefon' required placeholder="+3816XXXXXXXX">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="changeForm.controls['telefon'].invalid">
+            <div *ngIf="changeForm.controls['telefon'].errors['required']">
+                Telefon je obavezno polje
+            </div>
+            <div *ngIf="changeForm.controls['telefon'].errors['pattern']">
+                Telefon treba uneti u formatu +3816XXXXXXXX
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320>
+        <mat-label>I-mejl adresa</mat-label>
+        <input matInput formControlName='imejl' required placeholder="marija@gmail.com">
+        <mat-error *ngIf="changeForm.controls['imejl'].invalid">
+            <div *ngIf="changeForm.controls['imejl'].errors['required']">
+                I-mejl adresa je obavezno polje
+            </div>
+            <div *ngIf="changeForm.controls['imejl'].errors['email']">
+                Pogresan format
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline"  [style.width.px]=320>
+        <mat-label>Agencija</mat-label>
+        <mat-select formControlName='agencija'>
+          <mat-option *ngFor='let a of agencije' value="{{a.pib}}">{{a.ime}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="changeForm.controls['agencija'].invalid">
+            Agencija je obavezno polje
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.px]=320 *ngIf='changeForm.controls["agencija"].value!=""'>
+        <mat-label>Broj licence</mat-label>
+        <input matInput formControlName='brojLicence'  >
+    </mat-form-field>
+    <button mat-raised-button (click)="izmeni()" class="buttonStyle margin20px">Izmeni</button>
+</form>

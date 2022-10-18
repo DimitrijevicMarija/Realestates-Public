@@ -1,0 +1,184 @@
+<div class="centeredDiv belowMenuPadding">
+    <div class="myHeadingWithoutMargin centerHorizontally" > 
+        {{n.naziv}}&nbsp;&nbsp;
+        <div *ngIf='ulogovan != null && ulogovan.tip=="K"'>
+            <button mat-icon-button class="example-icon favorite-icon" aria-label="Dodaj u omiljene" *ngIf='!ulogovan.omiljene.includes(n._id)' (click)="dodajUOmiljene()"
+            matTooltip="Dodaj u omiljene">
+                <mat-icon>favorite_border</mat-icon>
+            </button>
+            <mat-icon *ngIf='ulogovan.omiljene.includes(n._id)'>favorite</mat-icon>
+        </div>
+        
+    </div>
+    <div class="subtitle myMarginBottom">
+        {{n.grad}} - {{n.opstina}} - {{n.mikrolokacija}} - {{n.ulica}}
+    </div>
+    
+    <div class="flexRow">
+    
+        <ngb-carousel *ngIf="slike" style='width: 400px !important;'>
+            <ng-template ngbSlide *ngFor='let s of slike'>
+            <div class="picsum-img-wrapper">
+                <img [src]=s alt="Nema slike" width="400px" height="300px">
+            </div>
+            </ng-template>
+        </ngb-carousel>
+
+        <div class="centeredDiv marginLeft">
+            <div class="info">
+                
+                Tip : <b>{{n.tip}}</b><br>
+                Kvadratura : <b>{{n.kvadratura}} m2</b> <br>
+                Broj soba : <b>{{n.brojSoba}}</b>   <br>
+                Godina izgradnje : <b>{{n.godinaIzgradnje}}.</b><br>
+                Stanje : <b>{{n.stanje}}</b><br>
+                Sprat : <b>{{n.sprat}}</b><br>
+                Ukupna spratnost : <b>{{n.ukupnaSpratnost}}</b><br>
+                Tip grejanja : <b>{{n.grejanje}}</b> <br>
+                Linije : <b>{{n.linije}}</b> <br>
+                
+                <br><br>
+                Cena : &nbsp;&nbsp;<span [class]="n.cena/n.kvadratura >= n.prosecnaCena ?  'priceRed' : 'priceGreen'">{{n.cena}} &euro;</span> <br>
+                Prosecna cena na mikrolokaciji: <b>{{n.prosecnaCena}} &euro;/m2</b> <br>
+            </div>
+        </div>
+        
+
+    </div>
+    
+    
+        
+        
+
+        <div class="info descriptionMargins">
+            Opis : {{n.opis}}
+        </div>
+
+        <div class="info">
+            <div class="flexRow">
+                <div class="oneDiv">
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.terasa' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.terasa' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Terasa</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.lodja' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.lodja' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Lodja</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.francBalkon' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.francBalkon' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Francuski balkon</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.basta' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.basta' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Basta</span>
+                    </div>
+                    
+                </div>
+                <div class="oneDiv">
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.parking' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.parking' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Parking</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.garaza' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.garaza' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Garaza</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.podrum' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.podrum' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Podrum</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.lift' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.lift' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Lift</span>
+                    </div>
+                    
+                </div>
+                <div class="oneDiv">
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.klima' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.klima' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Klima</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.interfon' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.interfon' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Interfon</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.internet' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.internet' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Internet</span>
+                    </div>
+                    <div class="centerHorizontally">
+                        <mat-icon *ngIf='n.telefon' color="primary">check_box</mat-icon>
+                        <mat-icon *ngIf='!n.telefon' color="primary">check_box_outline_blank</mat-icon>
+                        <span>&nbsp;Telefon</span>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="info">
+            Kontaktirajte oglasivaca
+            <hr>
+            <div *ngIf='agencija != null && oglasivac!= null' class="flexRow">
+                <div class="divRow marginBetweenDivs "> 
+                    <div class="contactWidth">
+                        Agencija : <b>{{agencija.ime}}</b> <br>
+                        PIB: <b>{{agencija.pib}}</b> <br>
+                        Adresa: <b>{{agencija.adresa}}, {{agencija.grad}}</b> <br>
+    
+                        <div *ngIf='prikaziKontaktAgencije'>Kontakt telefon: <b>{{agencija.telefon}}</b>  </div>
+                    </div>
+                    <button mat-icon-button class="example-icon" aria-label="Odjavi se" (click)='prikaziKontaktA()' 
+                    matTooltip="Prikazi kontakt telefon">
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                   
+                </div>
+                <div class="divRow marginBetweenDivs topMarginPortrait">
+                    <div class="contactWidth">
+                        Agent: <b> {{oglasivac.ime}}  {{oglasivac.prezime}}</b> <br>
+                        Broj licence: <b> {{oglasivac.licenca}}</b> <br>
+                        <div *ngIf='prikaziKontaktOglasivaca'>Kontakt telefon: <b> {{oglasivac.telefon}}</b>  </div>
+                    </div>
+                   
+                    <button mat-icon-button class="example-icon" aria-label="Telefon" (click)='prikaziKontaktO()' 
+                    matTooltip="Prikazi kontakt telefon">
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                    
+                </div>
+            
+               
+            </div>
+            <div *ngIf='agencija == null && oglasivac != null' class="divRow">
+                <div class="contactWidthWider">
+                    Vlasnik nekretnine: <b> {{oglasivac.ime}}  {{oglasivac.prezime}}</b> <br>
+                    <div *ngIf='prikaziKontaktOglasivaca'>Kontakt telefon: <b> {{oglasivac.telefon}}</b>  </div>
+                </div>
+               
+                <button mat-icon-button class="example-icon" aria-label="Telefon" (click)='prikaziKontaktO()'
+                matTooltip="Prikazi kontakt telefon">
+                    <mat-icon>add_circle_outline</mat-icon>
+                </button>
+                
+               
+            </div>
+            
+        </div>
+       
+
+</div>      
+
